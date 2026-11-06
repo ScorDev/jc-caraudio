@@ -48,7 +48,7 @@ export const servicios: { titulo: string; descripcion: string; icono: Icono; pun
 
 // dia: 0 = domingo … 6 = sábado. Horas en formato 24 h (hora local de México).
 export const horario = [
-  { dias: 'Lunes a Viernes', diasNum: [1, 2, 3, 4, 5], abre: 10, cierra: 19, texto: '10:00 am – 7:00 pm' },
-  { dias: 'Sábado', diasNum: [6], abre: 10, cierra: 17, texto: '10:00 am – 5:00 pm' },
-  { dias: 'Domingo', diasNum: [0], abre: null, cierra: null, texto: 'Cerrado' },
+  { dias: 'Lunes a Viernes', diasNum: [1, 2, 3, 4, 5], abre: 10, cierra: 19, texto: '10:00 am – 7:00 pm', corto: '10 am – 7 pm' },
+  { dias: 'Sábado', diasNum: [6], abre: 10, cierra: 17, texto: '10:00 am – 5:00 pm', corto: '10 am – 5 pm' },
+  { dias: 'Domingo', diasNum: [0], abre: null, cierra: null, texto: 'Cerrado', corto: 'Cerrado' },
 ];
