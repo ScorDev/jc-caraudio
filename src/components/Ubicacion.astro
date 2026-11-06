@@ -1,5 +1,5 @@
 ---
-import { negocio, mapa } from '../data/negocio';
+import { negocio, mapa, whatsappUrl } from '../data/negocio';
 import Icono from './Icono.astro';
 ---
 <section id="ubicacion" class="relative overflow-x-clip py-24">
@@ -28,6 +28,11 @@ import Icono from './Icono.astro';
             <a href={mapa.comoLlegar} target="_blank" rel="noopener" class="corte boton-acento group inline-flex items-center justify-center gap-2 py-3.5 font-bold text-white transition">
               Cómo llegar <Icono nombre="flecha" class="size-5 transition group-hover:translate-x-1" />
             </a>
+            {whatsappUrl && (
+              <a href={whatsappUrl} target="_blank" rel="noopener" class="corte inline-flex items-center justify-center gap-2 bg-[#25d366]/12 py-3.5 font-bold text-white transition hover:bg-[#25d366]/25">
+                <Icono nombre="whatsapp" class="size-5 text-[#25d366]" /> Escríbenos por WhatsApp
+              </a>
+            )}
             {negocio.telefono && (
               <a href={`tel:${negocio.telefono.replace(/\s/g, '')}`} class="corte inline-flex items-center justify-center gap-2 bg-white/8 py-3.5 font-bold text-white transition hover:bg-white/15">
                 <Icono nombre="tel" class="size-5" /> {negocio.telefono}

@@ -6,10 +6,15 @@ export const negocio = {
   direccion: 'Blvrd Ojo de Agua Manzana 001, Los Arcos, 55770 Ojo de Agua, Méx.',
   // TODO: confirmar con el negocio. Si se deja vacío, se ocultan los botones de llamada/WhatsApp.
   telefono: '',      // ej. '55 1234 5678'
-  whatsapp: '',      // solo dígitos con lada de país, ej. '5215512345678'
+  // DEMO: número de ejemplo para mostrar cómo funciona. Reemplazar por el del negocio.
+  whatsapp: '525533834749', // solo dígitos: 52 (México) + 10 dígitos
   facebook: '',      // URL completa
   instagram: '',     // URL completa
 };
+
+export const whatsappUrl = negocio.whatsapp
+  ? `https://wa.me/${negocio.whatsapp}?text=${encodeURIComponent(`Hola ${negocio.nombre}, quiero información sobre sus servicios.`)}`
+  : '';
 
 const consultaMapa = encodeURIComponent(`${negocio.nombre}, ${negocio.direccion}`);
 export const mapa = {
