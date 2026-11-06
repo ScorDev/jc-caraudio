@@ -15,7 +15,8 @@
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
-body { background: var(--color-fondo); color: var(--color-cromo); overflow-x: hidden; }
+html, body { overflow-x: clip; }
+body { background: var(--color-fondo); color: var(--color-cromo); }
 ::selection { background: var(--color-acento); color: #03140a; }
 
 .texto-cromo {
