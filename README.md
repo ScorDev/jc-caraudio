@@ -8,7 +8,7 @@ Hecha con [Astro](https://astro.build) + Tailwind CSS v4.
 
 ```sh
 pnpm install
-pnpm dev      # http://localhost:4321
+pnpm dev      # http://localhost:4321/jc-caraudio/
 pnpm build    # genera el sitio estático en dist/
 ```
 
@@ -16,3 +16,7 @@ pnpm build    # genera el sitio estático en dist/
 
 Todo (dirección, teléfono, WhatsApp, redes, servicios y horario) está en `src/data/negocio.ts`.
 Los colores están en `src/styles/global.css` (`--color-acento`).
+
+## Demo
+
+Se publica sola en GitHub Pages con cada push a `main`: https://scordev.github.io/jc-caraudio/

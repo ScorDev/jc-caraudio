@@ -1,4 +1,5 @@
 ---
+import logo from '../assets/logo.png';
 import { negocio } from '../data/negocio';
 const redes = [
   { nombre: 'Facebook', url: negocio.facebook },
@@ -9,7 +10,7 @@ const anio = new Date().getFullYear();
 <footer class="border-t border-white/5 py-10">
   <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-5 text-sm text-cromo/60 md:flex-row">
     <div class="flex items-center gap-3">
-      <img src="/logo.png" alt="" width="32" height="32" class="size-8 rounded-full" />
+      <img src={logo.src} alt="" width="32" height="32" class="size-8 rounded-full" />
       <span>© {anio} {negocio.nombre}</span>
     </div>
     {redes.length > 0 && (

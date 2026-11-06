@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
 import { negocio } from '../data/negocio';
+import logo from '../assets/logo.png';
+
+const logoAbsoluto = new URL(logo.src, Astro.site).href;
 
 const titulo = `${negocio.nombre} | Car Audio, Alarmas, GPS y LED en Ojo de Agua`;
 const descripcion = `Instalación de car audio, alarmas, GPS y luces LED en Ojo de Agua, Edo. Méx. ${negocio.direccion}`;
@@ -9,7 +12,7 @@ const datosEstructurados = {
   '@context': 'https://schema.org',
   '@type': 'AutoPartsStore',
   name: negocio.nombre,
-  image: '/logo.png',
+  image: logoAbsoluto,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Blvrd Ojo de Agua Manzana 001, Los Arcos',
@@ -34,9 +37,9 @@ const datosEstructurados = {
     <meta name="description" content={descripcion} />
     <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descripcion} />
-    <meta property="og:image" content="/logo.png" />
+    <meta property="og:image" content={logoAbsoluto} />
     <meta name="theme-color" content="#0b0c0e" />
-    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="icon" type="image/png" href={logo.src} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(datosEstructurados)} />
   </head>
   <body class="font-sans antialiased">
