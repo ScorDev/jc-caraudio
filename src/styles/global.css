@@ -1,0 +1,134 @@
+@import 'tailwindcss';
+@import '@fontsource/chakra-petch/500.css';
+@import '@fontsource/chakra-petch/700.css';
+@import '@fontsource-variable/manrope';
+
+@theme {
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-sans: 'Manrope Variable', sans-serif;
+  --color-fondo: #0b0c0e;
+  --color-panel: #14161a;
+  --color-borde: #262a31;
+  --color-cromo: #d9dde3;
+  --color-acento: #22d65e;
+  --color-acento-claro: #5cff8f;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body { background: var(--color-fondo); color: var(--color-cromo); overflow-x: hidden; }
+::selection { background: var(--color-acento); color: #03140a; }
+
+.texto-cromo {
+  background: linear-gradient(180deg, #ffffff 0%, #c9ced6 45%, #7c838e 55%, #e9ecf0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.rejilla {
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%);
+}
+
+/* ---------- Formas ---------- */
+
+/* Esquinas cortadas en diagonal (como el escudo del logo). Tamaño con --c */
+.chaflan {
+  clip-path: polygon(var(--c, 18px) 0, 100% 0, 100% calc(100% - var(--c, 18px)), calc(100% - var(--c, 18px)) 100%, 0 100%, 0 var(--c, 18px));
+}
+
+/* Borde degradado: .marco (borde) > .interior (relleno con brillo) */
+.marco {
+  padding: 1px;
+  background: linear-gradient(140deg, rgba(255,255,255,.22), rgba(255,255,255,.04) 40%, rgba(34,214,94,.08) 65%, rgba(34,214,94,.55));
+  transition: background .4s ease;
+}
+.marco:hover { background: linear-gradient(140deg, var(--color-acento-claro), rgba(255,255,255,.1) 45%, var(--color-acento)); }
+.marco > .interior {
+  height: 100%;
+  background:
+    radial-gradient(130% 90% at var(--mx, 30%) var(--my, 0%), rgba(255,255,255,.08), transparent 55%),
+    linear-gradient(180deg, #1a1d22, #0f1114);
+}
+
+/* Inclinación 3D al mover el mouse (ver script en Layout) */
+[data-inclinar] { transition: transform .25s ease-out, background .4s ease; will-change: transform; }
+
+.hex { clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); }
+
+/* Botón en paralelogramo */
+.corte { clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%); padding-inline: 1.9rem; }
+.boton-acento {
+  color: #03140a !important;
+  background: linear-gradient(180deg, var(--color-acento-claro), var(--color-acento) 55%, #0b8f3a);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 -2px 0 rgba(0,0,0,.25);
+}
+.boton-acento:hover { filter: brightness(1.12); }
+
+/* Secciones inclinadas */
+.inclinada {
+  clip-path: polygon(0 5vw, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  padding-block: calc(6rem + 5vw);
+}
+
+/* ---------- Bocina del hero ---------- */
+.borde-metal {
+  background: conic-gradient(from 210deg, #1b1e23, #8a909a 12%, #2b2f36 25%, #15171b 40%, #6d737d 55%, #23262c 70%, #9aa0aa 85%, #1b1e23);
+}
+.suspension {
+  background: radial-gradient(circle, #0a0b0d 58%, #2d3138 68%, #0e1013 78%, #3a3f47 88%, #0b0c0e 100%);
+  box-shadow: inset 0 10px 24px rgba(0,0,0,.85), inset 0 -4px 14px rgba(255,255,255,.07);
+}
+.tornillo {
+  background: radial-gradient(circle at 35% 35%, #f3f4f6, #4b5058 70%);
+  box-shadow: 0 1px 2px #000;
+}
+.onda {
+  position: absolute;
+  inset: 8%;
+  border-radius: 9999px;
+  border: 2px solid rgba(34,214,94, .55);
+  animation: onda 2.4s ease-out infinite;
+}
+@keyframes onda { from { transform: scale(.95); opacity: .9; } to { transform: scale(1.55); opacity: 0; } }
+.latido { animation: latido .55s ease-in-out infinite alternate; }
+@keyframes latido { from { transform: scale(1); } to { transform: scale(1.035); } }
+.girar { animation: girar 40s linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
+
+/* Trazos de luz que recorren el fondo */
+.luz { stroke-dasharray: 140 1000; animation: luz 7s linear infinite; }
+@keyframes luz { to { stroke-dashoffset: -1140; } }
+
+/* Ecualizador */
+.eq span {
+  display: block;
+  width: 100%;
+  border-radius: 3px 3px 1px 1px;
+  background: linear-gradient(to top, var(--color-acento), var(--color-acento-claro) 60%, #fff);
+  transform-origin: bottom;
+  animation: eq 1.2s ease-in-out infinite alternate;
+}
+@keyframes eq { from { transform: scaleY(.15); } to { transform: scaleY(1); } }
+
+/* Tacómetro */
+#aguja { transform-origin: 100px 100px; transform: rotate(-135deg); transition: transform 1.8s cubic-bezier(.25, 1.5, .45, 1) .3s; }
+
+/* Aparición al hacer scroll */
+.revelar {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s ease var(--retraso, 0ms), transform .7s ease var(--retraso, 0ms);
+}
+.revelar.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .eq span { animation: none; transform: scaleY(.6); }
+  .onda, .latido, .girar, .luz { animation: none; }
+  .onda { display: none; }
+  .revelar { opacity: 1; transform: none; transition: none; }
+}

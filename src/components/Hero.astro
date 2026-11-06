@@ -1,0 +1,93 @@
+---
+import { negocio } from '../data/negocio';
+import Icono from './Icono.astro';
+
+// Barras del ecualizador con ritmos distintos (deterministas, sin Math.random)
+const barras = Array.from({ length: 24 }, (_, i) => ({
+  retraso: ((i * 37) % 11) / 10,
+  duracion: 0.6 + ((i * 53) % 7) / 10,
+}));
+const curvas = [
+  'M-120 760 C 280 560, 640 940, 1560 360',
+  'M-120 300 C 360 520, 900 80, 1560 620',
+  'M-120 860 C 500 700, 900 1000, 1560 820',
+];
+---
+<section
+  id="inicio"
+  class="relative flex min-h-[min(100svh,58rem)] items-center overflow-hidden pt-24 pb-[5vw]"
+  style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 6vw))"
+>
+  <div class="rejilla pointer-events-none absolute inset-0"></div>
+  <div class="pointer-events-none absolute -top-40 right-[-10%] size-[44rem] rounded-full bg-acento/20 blur-[140px]"></div>
+  <div class="pointer-events-none absolute bottom-0 left-[-15%] size-[30rem] rounded-full bg-white/5 blur-[120px]"></div>
+
+  <!-- Trazos de luz -->
+  <svg class="pointer-events-none absolute inset-0 size-full opacity-40 md:opacity-100" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="trazo" x1="0" x2="1">
+        <stop offset="0" stop-color="#22d65e" stop-opacity="0" />
+        <stop offset=".6" stop-color="#5cff8f" />
+        <stop offset="1" stop-color="#ffffff" />
+      </linearGradient>
+    </defs>
+    {curvas.map((d, i) => (
+      <>
+        <path d={d} stroke="rgba(255,255,255,.05)" stroke-width="1.5" />
+        <path d={d} class="luz" pathLength="1000" stroke="url(#trazo)" stroke-width="2.5" stroke-linecap="round" style={`animation-delay:-${i * 2.3}s`} />
+      </>
+    ))}
+  </svg>
+
+  <div class="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-5 py-10 md:grid-cols-[1.15fr_1fr]">
+    <div>
+      <p class="corte mb-6 inline-flex items-center gap-2 bg-white/5 py-1.5 text-xs font-semibold uppercase tracking-[.2em] text-cromo/80">
+        <span class="size-2 rounded-full bg-acento shadow-[0_0_10px_2px_rgba(34,214,94,.8)]"></span> Ojo de Agua, Edo. Méx.
+      </p>
+      <h1 class="font-display text-5xl leading-[1.02] font-bold uppercase italic sm:text-6xl lg:text-7xl">
+        <span class="texto-cromo">Lleva tu auto</span><br />
+        <span class="text-acento drop-shadow-[0_0_24px_rgba(34,214,94,.45)]">al siguiente nivel</span>
+      </h1>
+      <p class="mt-6 max-w-lg text-lg text-cromo/75">
+        En <strong class="text-white">{negocio.nombre}</strong> instalamos car audio, alarmas, GPS y luces LED.
+        {" "}{negocio.eslogan}.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#servicios" class="corte boton-acento group inline-flex items-center gap-2 py-3.5 font-bold text-white transition">
+          Ver servicios <Icono nombre="flecha" class="size-5 transition group-hover:translate-x-1" />
+        </a>
+        <a href="#ubicacion" class="corte inline-flex items-center gap-2 bg-white/8 py-3.5 font-bold text-white transition hover:bg-white/15">
+          <Icono nombre="pin" class="size-5" /> Cómo llegar
+        </a>
+      </div>
+    </div>
+
+    <!-- Bocina -->
+    <div class="relative mx-auto w-full max-w-md">
+      <div class="relative mx-auto aspect-square w-[82%]">
+        <span class="onda"></span>
+        <span class="onda" style="animation-delay:-.8s"></span>
+        <span class="onda" style="animation-delay:-1.6s"></span>
+
+        <div class="borde-metal absolute inset-0 rounded-full shadow-[0_40px_70px_-25px_rgba(0,0,0,.95),0_0_100px_-20px_rgba(34,214,94,.65)]"></div>
+        <svg class="girar absolute inset-[2.5%] size-[95%]" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="48.5" fill="none" stroke="rgba(0,0,0,.55)" stroke-width="1" stroke-dasharray=".6 2.4" />
+        </svg>
+        {Array.from({ length: 8 }, (_, i) => (
+          <span class="absolute inset-0" style={`rotate:${i * 45 + 22.5}deg`}>
+            <span class="tornillo absolute top-[2.6%] left-1/2 size-[3.6%] -translate-x-1/2 rounded-full"></span>
+          </span>
+        ))}
+        <div class="suspension absolute inset-[9%] rounded-full"></div>
+        <div class="latido absolute inset-[19%] rounded-full shadow-[0_0_0_6px_rgba(0,0,0,.6),0_0_40px_rgba(34,214,94,.5)]">
+          <img src="/logo.png" alt={`Logo de ${negocio.nombre}`} width="400" height="400" class="size-full rounded-full" />
+        </div>
+      </div>
+
+      <div class="eq mx-auto mt-10 flex h-20 w-[90%] items-end gap-1.5" aria-hidden="true">
+        {barras.map((b) => <span style={`height:100%;animation-delay:-${b.retraso}s;animation-duration:${b.duracion}s`}></span>)}
+      </div>
+      <div class="mx-auto mt-1 h-6 w-[90%] rounded-[50%] bg-acento/25 blur-xl" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
