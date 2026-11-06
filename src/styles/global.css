@@ -23,6 +23,9 @@ body { background: var(--color-fondo); color: var(--color-cromo); }
   background: linear-gradient(180deg, #ffffff 0%, #c9ced6 45%, #7c838e 55%, #e9ecf0 100%);
   -webkit-background-clip: text;
   background-clip: text;
+  padding-right: .12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   color: transparent;
 }
 
@@ -61,7 +64,7 @@ body { background: var(--color-fondo); color: var(--color-cromo); }
 .hex { clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); }
 
 /* Botón en paralelogramo */
-.corte { clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%); padding-inline: 1.9rem; }
+.corte { clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%); padding-inline: var(--px, 1.9rem); }
 .boton-acento {
   color: #03140a !important;
   background: linear-gradient(180deg, var(--color-acento-claro), var(--color-acento) 55%, #0b8f3a);
